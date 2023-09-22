@@ -4,7 +4,7 @@ import numpy as np
 # Your function `classification_results` should be imported if it's in a different file or you can also define it in this file.
 from .classification_report import classification_results
 
-def test_classification_results(n: int, target_value: float, sen: bool, youden_index: bool, display_cm: bool):
+def test_classification_results(n: int, target_value: float, sen: bool, youden_index: bool, display_cm: bool, weighted_f1: bool):
     """
     Generate random binary classification data and compute classification metrics based on the given parameters to test the module.
     
@@ -26,7 +26,7 @@ def test_classification_results(n: int, target_value: float, sen: bool, youden_i
     y_pred = np.array([np.random.normal(loc=0.3, scale=0.3) for _ in range(n)] + 
                       [np.random.normal(loc=0.7, scale=0.3) for _ in range(n)])
 
-    results = classification_results(y_true, y_pred, youden_index=youden_index, target_value=target_value, sen=sen, display_cm=display_cm)
+    results = classification_results(y_true, y_pred, youden_index=youden_index, target_value=target_value, sen=sen, display_cm=display_cm, weighted_f1=weighted_f1)
     print(results)
 
 def main():
@@ -40,8 +40,9 @@ if __name__ == "__main__":
     parser.add_argument('--sen', action='store_true', help="Use sensitivity as target value if set, otherwise specificity.")
     parser.add_argument('--youden_index', action='store_true', help="Use Youden's Index to determine threshold.")
     parser.add_argument('--display_cm', action='store_true', help="Display the confusion matrix.")
+    parser.add_argument('--weighted_f1', action='store_true', help="whether to calculated weighted F1 score.")
 
     args = parser.parse_args()
     
-    test_classification_results(args.n, args.target_value, args.sen, args.youden_index, args.display_cm)
+    test_classification_results(args.n, args.target_value, args.sen, args.youden_index, args.display_cm, args.weighted_f1)
     main()
