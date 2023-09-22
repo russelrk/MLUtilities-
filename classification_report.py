@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.metrics import roc_curve, confusion_matrix, roc_auc_score, accuracy_score
+from sklearn.metrics import roc_curve, confusion_matrix, roc_auc_score, accuracy_score, f1_score
 from typing import Dict, Union, Optional
 from tabulate import tabulate
 
@@ -21,7 +21,8 @@ def classification_results(
     target_value: Optional[float] = None,
     sen: Optional[bool] = False,
     positive_label: Optional[int] = 1,
-    display_cm: Optional[bool] = False
+    display_cm: Optional[bool] = False,
+    weighted_f1: Optional[bool] = False
 ) -> Dict[str, Union[float, np.ndarray]]:
     """
     Computes various classification metrics including AUC-ROC, sensitivity, specificity, and accuracy.
@@ -34,6 +35,7 @@ def classification_results(
         sen (bool, optional): If true, target value refers to sensitivity, otherwise specificity.
         positive_label (int, optional): The label considered as positive in the dataset. Defaults to 1.
         display_cm (bool, optional): Whether to display confusion matrix.
+        weighted_f1 (bool, optional): Whether to calcualted weighted F1 score
 
     Returns:
         Dict[str, Union[float, np.ndarray]]: A dictionary containing the ROC-AUC score, accuracy score, precision, sensitivity, and specificity.
@@ -66,6 +68,7 @@ def classification_results(
         precision = tp / (tp + fp)
         sensitivity = tp / (tp + fn)
         specificity = tn / (tn + fp)
+        f1 = f1_score(y_true, y_preds_binary) if not weighted_f1 else f1_score(y_true, y_preds_binary, average = 'weighted')
 
         # Return the calculated metrics in dictionary format
         return {
@@ -73,7 +76,8 @@ def classification_results(
             "Accuracy Score": accuracy_score(y_true, y_preds_binary),
             "Precision": precision,
             "Sensitivity": sensitivity,
-            "Specificity": specificity
+            "Specificity": specificity,
+            "f1_score": f1
         }
 
     except Exception as e:
