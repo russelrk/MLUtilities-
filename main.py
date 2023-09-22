@@ -2,7 +2,7 @@ import argparse
 import numpy as np
 
 # Your function `classification_results` should be imported if it's in a different file or you can also define it in this file.
-from .get_score import classification_results
+from .classification_report import classification_results
 
 def test_classification_results(n: int, target_value: float, sen: bool, youden_index: bool, display_cm: bool):
     """
