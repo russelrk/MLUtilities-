@@ -22,8 +22,6 @@ MLHelpers is designed to alleviate common challenges faced during the machine le
 - **Classification_Results**: A function dedicated to providing a granular classification report. Accepts ground truth values (`y_true`) and predicted probabilities (`y_preds`) as input and furnishes detailed metrics.
 
   **Parameters**:
-  - `--n`: Specifies the number of samples for each class. (Default: 500) 
-    - Example: `--n 1000` will generate 1000 samples for both positive and negative classes.
   - `--target_value`: Determines the target specificity or sensitivity. (Default: 0.9)
     - Example: `--target_value 0.85` aims for a specificity or sensitivity of 0.85.
   - `--sen`: If provided, `target_value` denotes the target sensitivity; if not, it represents specificity.
@@ -38,6 +36,8 @@ To evaluate the performance of a model on synthetic binary classification data, 
 ```bash
 python main.py --n <samples_per_class> --target_value <target_value> --sen --youden_index --display_cm
 ```
+  - `--n`: Specifies the number of samples for each class. (Default: 500) 
+    - Example: `--n 1000` will generate 1000 samples for both positive and negative classes.
 
 The provided command-line interface offers flexibility, ensuring that users can replicate different real-world scenarios and understand model dynamics with ease.
 
