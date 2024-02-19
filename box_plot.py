@@ -16,6 +16,7 @@ def generate_boxplot(dataframe, x_tick_labels=None, y_label=None, title=None, fi
         figsize (tuple, optional): Figure size (width, height).
         save_path (str, optional): Path to save the generated image. If None, the image will not be saved.
         show_plot (bool, optional): Whether to display the plot (True) or not (False).
+        
     """
     fig, ax = plt.subplots(figsize=figsize)
     
