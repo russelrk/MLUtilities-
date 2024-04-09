@@ -1,7 +1,3 @@
-Certainly! Here's an improved version of the repository description:
-
----
-
 # MLHelpers
 
 MLHelpers is a toolkit offering essential utility functions crafted to enhance the machine learning workflow, making model building, training, and evaluation seamless and efficient.
